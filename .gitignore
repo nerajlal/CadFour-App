@@ -11,3 +11,7 @@ npm-debug.*
 web-build/
 .env
 .DS_Store
+expo_log.txt
+expo_output.txt
+google-services.json
+GoogleService-Info.plist
