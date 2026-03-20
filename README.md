@@ -122,4 +122,4 @@ Place these in `/assets/`:
 After launch, the only cost is the Apple Developer Program ($99/year). No third-party app fees. No Shopify plan changes needed.
 
 
-https://expo.dev/accounts/nerajlal/projects/cadfour-app/builds/00011084-f452-4495-9c3e-b748a44c986e
+https://expo.dev/accounts/nerajlal/projects/cadfour-app/builds/9e6cbef4-77d3-4555-b5a1-8e9a2a866a28
