@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
+import Constants from 'expo-constants';
 import AppNavigator from './src/navigation/AppNavigator';
 
 // Keep splash screen visible until we're ready
@@ -34,7 +35,17 @@ async function registerForPushNotificationsAsync() {
     }
 
     try {
-        const token = (await Notifications.getExpoPushTokenAsync()).data;
+        const projectId =
+            Constants?.expoConfig?.extra?.eas?.projectId ??
+            Constants?.easConfig?.projectId;
+
+        if (!projectId) {
+            console.log('Project ID not found in config');
+        }
+
+        const token = (await Notifications.getExpoPushTokenAsync({
+            projectId,
+        })).data;
         console.log('Expo Push Token:', token);
         return token;
     } catch (e) {

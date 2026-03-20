@@ -8,69 +8,69 @@ git pull origin main
 
 ---
 
-## 2. Install Dependencies (if not done)
+## 2. ⚠️ ADD MISSING FIREBASE FILES
+Your `app.json` now expects these files in the root folder. You **MUST** add them before building:
+1.  **`google-services.json`** (for Android)
+2.  **`GoogleService-Info.plist`** (for iOS)
+
+Get these from your [Firebase Console](https://console.firebase.google.com).
+
+---
+
+## 3. Install Dependencies
 ```bash
 npm install
 ```
 
 ---
 
-## 3. Preview the App on Your Phone
-```bash
-npx expo start
-```
-- Install **Expo Go** app on your phone
-- Scan the QR code → Cadfour store loads inside the app ✅
+## 4. ⚠️ USE DEVELOPMENT CLIENT (Not Expo Go)
+Because the app now uses **Expo SDK 54** and has custom native configurations, it will **NOT** work in the standard Expo Go app. 
+
+### To test on your phone:
+1.  **Build the Development Client**:
+    ```bash
+    eas build --profile development --platform android
+    # or
+    eas build --profile development --platform ios
+    ```
+2.  **Install the resulting APK/IPA** on your device.
+3.  **Start the dev server**:
+    ```bash
+    npx expo start --dev-client
+    ```
+4.  Open the app you installed in step 1 and scan the QR code.
 
 ---
 
-## 4. Set Up Firebase (Push Notifications)
-1. Go to [https://console.firebase.google.com](https://console.firebase.google.com)
-2. Create project → **"Cadfour App"**
-3. Add Android app → package: `com.cadfour.app`
-4. Add iOS app → bundle ID: `com.cadfour.app`
-5. Copy the config values into `src/config/app.config.js` under `FIREBASE_CONFIG`
-
----
-
-## 5. Set Up EAS Build (App Store Builds)
+## 5. Set Up EAS Build (Standalone Apps)
 ```bash
 npm install -g eas-cli
 eas login
 eas build:configure
 ```
-> This auto-updates `projectId` in `app.json`
 
 ---
 
-## 6. Build for Android (Google Play)
+## 6. Build for Production (App Stores)
+### Android:
 ```bash
 eas build --platform android --profile production
 ```
-- Download the `.aab` file when done
-- Upload to [Google Play Console](https://play.google.com/console)
-- Cost: $25 one-time developer account
-
----
-
-## 7. Build for iOS (App Store)
+### iOS:
 ```bash
 eas build --platform ios --profile production
 ```
-- Download the `.ipa` file when done
-- Upload via [App Store Connect](https://appstoreconnect.apple.com)
-- Cost: $99/year Apple Developer account
 
 ---
 
-## 8. After Each Change — Push to GitHub
+## 7. After Each Change — Push to GitHub
 ```bash
 git add .
 git commit -m "your message"
 git push origin main
 ```
-Then on this Mac: `git pull origin main`
 
 ---
 
-> **Note:** Steps 1–3 are enough to preview the app. Steps 4–7 are only needed when you're ready to publish to the App Stores.
+> **Note:** The "error on device" is likely because you were trying to use Expo Go or were missing the Firebase credential files. Following Step 2 and Step 4 should fix it.
