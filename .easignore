@@ -1,0 +1,17 @@
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+.env
+.DS_Store
+expo_log.txt
+expo_output.txt
+# google-services.json -> DO NOT ignore for EAS
+# GoogleService-Info.plist -> DO NOT ignore for EAS
